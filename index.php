@@ -1,9 +1,9 @@
 <?php
 //database credentials
 $host = 'localhost';
-$username = 'your_username';
-$password = 'your_password';
-$dbname = 'your_database_name';
+$username = 'mysql';
+$password = 'password01';
+$dbname = 'institutiondb';
 
 // Create connection
 $conn = new mysqli($host, $username, $password, $dbname);
