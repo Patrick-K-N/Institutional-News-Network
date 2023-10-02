@@ -15,13 +15,18 @@ $stmt->bindParam(':password', $password);
 $stmt->execute();
 $user = $stmt->fetch();
 
-// Redirect the user to the appropriate page
+// Check if the user login was successful
 if ($user) {
-  // The user login was successful
-  header('Location: dashboard.html');
-} else {
-  // The user login was unsuccessful
-  header('Location: login.html');
-}
+    // The user login was successful
+    // Set the loggedIn flag in local storage
+    localStorage.setItem('loggedIn', 'true');
+  
+    // Redirect the user to the dashboard page
+    header('Location: dashboard.html');
+  } else {
+    // The user login was unsuccessful
+    // Redirect the user back to the login page
+    header('Location: login.html');
+  }
 
 ?>
