@@ -8,7 +8,7 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 
 // Verify the user login information
-$sql = 'SELECT * FROM users WHERE email = :email AND password = :password';
+$sql = 'SELECT * FROM students WHERE email = :email AND password = :password';
 $stmt = $db->prepare($sql);
 $stmt->bindParam(':email', $email);
 $stmt->bindParam(':password', $password);
