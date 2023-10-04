@@ -7,8 +7,16 @@
 <body>
 	<a href="#" class="btn">EMERGENCY</a>
 	<div class="form-container">
-		<input type="text" class="input-box" placeholder="Enter your message...">
-		<button class="send-btn">Send</button>
+		<form action="/submit" method="post">
+			<input type="checkbox" name="emergency[]" value="fire" checked> Fire
+			<input type="checkbox" name="emergency[]" value="protest"> Protest
+			<input type="checkbox" name="emergency[]" value="rape"> Rape
+			<input type="checkbox" name="emergency[]" value="other"> Other
+		<br>
+		<br>
+		<input type="text" class="input-box" placeholder="Enter your emergency">
+		<input type="button" value="Submit">
+	</form>
 		<p id="demo"></p>
 	</div>
 	<script>
