@@ -45,7 +45,7 @@
 					<a href="#">Forgot password?</a>
 				  </div>
 
-				  <button type="submit" class="btn" value="Login">Login</button>
+				  <button type="submit" class="btn" id="loggedIn">Login</button>
 			
 			</form>
 		</div>
@@ -54,12 +54,7 @@
 
 
 	<script src="index.php">
-		// Check if the user is logged in
-		if (window.localStorage.getItem('loggedIn') === 'true') {
-			// The user is logged in
-			// Redirect the user to the dashboard page
-			window.location.href = 'dashboard.html';
-		  }
+	
 	</script>
 </body>
 

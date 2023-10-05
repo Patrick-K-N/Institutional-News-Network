@@ -19,7 +19,7 @@ $user = $stmt->fetch();
 if ($user) {
     // The user login was successful
     // Set the loggedIn flag in local storage
-    localStorage.setItem('loggedIn', 'true');
+    $_SESSION['loggedIn'] = true;
   
     // Redirect the user to the dashboard page
     header('Location: dashboard.html');
