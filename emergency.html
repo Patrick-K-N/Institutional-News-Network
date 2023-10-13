@@ -29,14 +29,22 @@
 		}
 
 		function showPosition(position) {
-			var lat = position.coords.latitude;
-			var long = position.coords.longitude;
-			document.getElementById("demo").innerHTML = "Latitude: " + lat + "<br>Longitude: " + long;
-		}
+		  var lat = position.coords.latitude;
+		  var long = position.coords.longitude;
 		
-		document.querySelector('.btn').addEventListener('click', function() {
+		  // Create a Google Maps link to the location.
+		  var googleMapsLink = "https://maps.google.com/?q=" + lat + "," + long;
+		
+		  // Display the location in HTML.
+		  document.getElementById("demo").innerHTML = "Latitude: " + lat + "<br>Longitude: " + long + "<br><a href='" + googleMapsLink + "'>View on Google Maps</a>";
+		}
+	
+			document.querySelector('.btn').addEventListener('click', function() {
 			getLocation();
 		});
+
+		
 	</script>
-</body>
-</html>
+
+  </body>
+  </html>
