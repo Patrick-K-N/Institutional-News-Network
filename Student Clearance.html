@@ -1,0 +1,204 @@
+<div ng-include="'../views/route_loader.html'"></div>
+
+<!-- STATISTIC-->
+<section class="statistic statistic2" ng-hide="isLoading">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-3">
+                <div class="statistic__item statistic__item--green">
+                    <h2 class="number">{{(students | filter: approved).length }}</h2>
+                    <span class="desc">approved</span>
+                    <div class="icon">
+                        <i class="zmdi zmdi-check"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="statistic__item statistic__item--red">
+                    <h2 class="number">{{(students | filter:{clearance_level:user.id}).length }}</h2>
+                    <span class="desc">unapproved</span>
+                    <div class="icon">
+                        <i class="zmdi zmdi-close"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="statistic__item statistic__item--blue">
+                    <h2 class="number">{{students.length}}</h2>
+                    <span class="desc">total students</span>
+                    <div class="icon">
+                        <i class="zmdi zmdi-functions"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="statistic__item statistic__item--orange">
+                    <h2 class="number">{{(students | filter: expecting).length}}</h2>
+                    <span class="desc">expecting</span>
+                    <div class="icon">
+                        <i class="zmdi zmdi-assignment"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END STATISTIC-->
+
+<!-- DATA TABLE: UNAPPROVED-->
+<section class="p-t-20" ng-hide="isLoading || (students | filter:{clearance_level:user.id}).length == 0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="title-5 m-b-35">UNAPPROVED</h3>
+                <div class="table-data__tool">
+                    
+                    <div class="table-data__tool-right">
+                        <button class="au-btn au-btn-icon btn-secondary au-btn--small">
+                            <i class="zmdi zmdi-flip"></i>Invert Selection</button>
+                            <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                            <i class="zmdi zmdi-check-all"></i>Approve Selection</button>
+                    </div>
+                    <div>
+                        <input class="form-control form-control-md" type="text" placeholder="search"
+                            style="width: auto;" ng-model="search.unapproved">
+                    </div>
+                </div>
+                <div class="table-responsive table-responsive-data2">
+                    <table class="table table-data2" id="unapproved_tbl">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <label class="au-checkbox">
+                                        <input type="checkbox" ng-model="select_all_unapproved" title="Select All">
+                                        <span class="au-checkmark"></span>
+                                    </label>
+                                </th>
+                                <th>S/N</th>
+                                <th>Name</th>
+                                <th>Matric number</th>
+                                <th>Email</th>
+                                <th>Level</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="tr-shadow" ng-repeat="student in students | filter:{clearance_level:user.id} | filter: search.unapproved">
+                                <td>
+                                    <label class="au-checkbox">
+                                        <input type="checkbox" ng-checked="select_all_unapproved" ng-model="select">
+                                        <span class="au-checkmark"></span>
+                                    </label>
+                                </td>
+                                <td>{{$index+1}}</td>
+                                <td class="capitalize">{{student.firstname}} {{student.middlename}} {{student.lastname}}</td>
+                                <td>
+                                    <span class="block-email">{{student.matric_no}}</span>
+                                </td>
+                                <td class="desc">{{student.email}}</td>
+                                <td>{{student.level}}</td>
+                                <td>
+                                    <span class="status--process text-danger">unapproved</span>
+                                </td>
+                                <td>
+                                    <div class="table-data-feature">
+                                        <button class="item hover hover-green" data-toggle="tooltip" data-placement="top" title="Approve" 
+                                        ng-click="approval(student.id)" ng-disabled="student.disabled">
+                                            <i class="zmdi zmdi-check"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="spacer"></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END DATA TABLE-->
+
+<!-- DATA TABLE: APPROVED-->
+<section class="p-t-50" ng-hide="isLoading || (students | filter: approved).length == 0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="title-5 m-b-35">APPROVED</h3>
+                <div class="table-data__tool">
+                    
+                    <div class="table-data__tool-right">
+                        <button class="au-btn au-btn-icon btn-secondary au-btn--small">
+                            <i class="zmdi zmdi-flip"></i>Invert Selection</button>
+                            <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                            <i class="zmdi zmdi-delete"></i>Disapprove Selection</button>
+                    </div>
+                    <div>
+                        <input class="form-control form-control-md" type="text" placeholder="search"
+                            style="width: auto;" ng-model="search.approved">
+                    </div>
+                </div>
+                <div class="table-responsive table-responsive-data2">
+                    <table class="table table-data2" id="approved_tbl">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <label class="au-checkbox">
+                                        <input type="checkbox" ng-model="select_all_approved" title="Select All">
+                                        <span class="au-checkmark"></span>
+                                    </label>
+                                </th>
+                                <th>S/N</th>
+                                <th>Name</th>
+                                <th>Matric number</th>
+                                <th>Email</th>
+                                <th>Level</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="tr-shadow" ng-repeat="student in students | filter: approved | filter: search.approved">
+                                <td>
+                                    <label class="au-checkbox">
+                                        <input type="checkbox" ng-checked="select_all_approved">
+                                        <span class="au-checkmark"></span>
+                                    </label>
+                                </td>
+                                <td>{{$index+1}}</td>
+                                <td class="capitalize">{{student.firstname}} {{student.middlename}} {{student.lastname}}</td>
+                                <td>
+                                    <span class="block-email">{{student.matric_no}}</span>
+                                </td>
+                                <td class="desc">{{student.email}}</td>
+                                <td>{{student.level}}</td>
+                                <td>
+                                    <span class="status--process">approved
+                                        <span class="badge badge-pill badge-success" ng-show="student.hash || student.sent">
+                                        sent
+                                        </span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="table-data-feature">
+                                        <button class="item hover hover-red" data-toggle="tooltip" data-placement="top" title="Disapprove" 
+                                        ng-click="approval(student.id, 0)" ng-disabled="student.disabled">
+                                            <i class="zmdi zmdi-delete"></i>
+                                        </button>
+                                        <button class="item hover hover-green" data-toggle="tooltip" data-placement="top" title="Send" 
+                                        ng-show="user.id == final_id" ng-click="send_mail(student)" ng-disabled="student.disabled">
+                                            <i class="zmdi zmdi-mail-send"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="spacer"></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END DATA TABLE-->
