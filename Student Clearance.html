@@ -109,7 +109,7 @@
                   echo "</td>";
                   echo "<td>";
                   echo "<div class="table-data-feature">";
-                  echo "<button class="item hover hover-green" data-toggle="tooltip" data-placement="top" title="Approve" onclick="approveStudent({$student['id']})">";
+                  echo "<button class="item hover hover-green" data-toggle="tooltip" data-placement="top" title="Approve" onclick="approveStudent($student['id'])">";
                   echo "<i class="zmdi zmdi-check"></i>";
                   echo "</button>";
                   echo "</div>";
@@ -128,85 +128,90 @@
 <!-- END DATA TABLE-->
 
 <!-- DATA TABLE: APPROVED-->
-<section class="p-t-50" ng-hide="isLoading || (students | filter: approved).length == 0">
+<section class="p-t-50">
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h3 class="title-5 m-b-35">APPROVED</h3>
-                <div class="table-data__tool">
-                    
-                    <div class="table-data__tool-right">
-                        <button class="au-btn au-btn-icon btn-secondary au-btn--small">
-                            <i class="zmdi zmdi-flip"></i>Invert Selection</button>
-                            <button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                            <i class="zmdi zmdi-delete"></i>Disapprove Selection</button>
-                    </div>
-                    <div>
-                        <input class="form-control form-control-md" type="text" placeholder="search"
-                            style="width: auto;" ng-model="search.approved">
-                    </div>
-                </div>
-                <div class="table-responsive table-responsive-data2">
-                    <table class="table table-data2" id="approved_tbl">
-                        <thead>
-                            <tr>
-                                <th>
-                                    <label class="au-checkbox">
-                                        <input type="checkbox" ng-model="select_all_approved" title="Select All">
-                                        <span class="au-checkmark"></span>
-                                    </label>
-                                </th>
-                                <th>S/N</th>
-                                <th>Name</th>
-                                <th>Matric number</th>
-                                <th>Email</th>
-                                <th>Level</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="tr-shadow" ng-repeat="student in students | filter: approved | filter: search.approved">
-                                <td>
-                                    <label class="au-checkbox">
-                                        <input type="checkbox" ng-checked="select_all_approved">
-                                        <span class="au-checkmark"></span>
-                                    </label>
-                                </td>
-                                <td>{{$index+1}}</td>
-                                <td class="capitalize">{{student.firstname}} {{student.middlename}} {{student.lastname}}</td>
-                                <td>
-                                    <span class="block-email">{{student.matric_no}}</span>
-                                </td>
-                                <td class="desc">{{student.email}}</td>
-                                <td>{{student.level}}</td>
-                                <td>
-                                    <span class="status--process">approved
-                                        <span class="badge badge-pill badge-success" ng-show="student.hash || student.sent">
-                                        sent
-                                        </span>
-                                    </span>
-                                </td>
-                                <td>
-                                    <div class="table-data-feature">
-                                        <button class="item hover hover-red" data-toggle="tooltip" data-placement="top" title="Disapprove" 
-                                        ng-click="approval(student.id, 0)" ng-disabled="student.disabled">
-                                            <i class="zmdi zmdi-delete"></i>
-                                        </button>
-                                        <button class="item hover hover-green" data-toggle="tooltip" data-placement="top" title="Send" 
-                                        ng-show="user.id == final_id" ng-click="send_mail(student)" ng-disabled="student.disabled">
-                                            <i class="zmdi zmdi-mail-send"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="spacer"></tr>
-                        </tbody>
-                    </table>
-                </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="title-5 m-b-35">APPROVED</h3>
+          <div class="table-data__tool">
+            <div class="table-data__tool-right">
+              <button class="au-btn au-btn-icon btn-secondary au-btn--small">
+                <i class="zmdi zmdi-flip"></i>Invert Selection
+              </button>
+              <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                <i class="zmdi zmdi-delete"></i>Disapprove Selection
+              </button>
             </div>
+            <div>
+              <input class="form-control form-control-md" type="text" placeholder="search" style="width: auto;" id="search_approved">
+            </div>
+          </div>
+          <div class="table-responsive table-responsive-data2">
+            <table class="table table-data2" id="approved_tbl">
+              <thead>
+                <tr>
+                  <th>
+                    <label class="au-checkbox">
+                      <input type="checkbox" id="select_all_approved" title="Select All">
+                      <span class="au-checkmark"></span>
+                    </label>
+                  </th>
+                  <th>S/N</th>
+                  <th>Name</th>
+                  <th>Matric number</th>
+                  <th>Email</th>
+                  <th>Level</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                // Load the data for the approved students table
+                // ...
+  
+                // Iterate over the approved students and display them in a table row
+                foreach ($approvedStudents as $student) {
+                  echo "<tr>";
+                  echo "<td>";
+                  echo "<label class="au-checkbox">";
+                  echo "<input type="checkbox" name="student_ids[]" value="{$student['id']}">";
+                  echo "<span class="au-checkmark"></span>";
+                  echo "</label>";
+                  echo "</td>";
+                  echo "<td>{$student['sn']}</td>";
+                  echo "<td>{$student['name']}</td>";
+                  echo "<td>{$student['matric_no']}</td>";
+                  echo "<td>{$student['email']}</td>";
+                  echo "<td>{$student['level']}</td>";
+                  echo "<td>";
+                  echo "<span class="status--process">approved";
+                  echo "<span class="badge badge-pill badge-success" ng-show="student.hash || student.sent">";
+                  echo "sent";
+                  echo "</span>";
+                  echo "</span>";
+                  echo "</td>";
+                  echo "<td>";
+                  echo "<div class="table-data-feature">";
+                  echo "<button class="item hover hover-red" data-toggle="tooltip" data-placement="top" title="Disapprove" onclick="disapproveStudent($student['id'])" disabled="{$student['disabled']}">";
+                  echo "<i class="zmdi zmdi-delete"></i>";
+                  echo "</button>";
+                  if ($user['id'] == $finalId) {
+                    echo "<button class="item hover hover-green" data-toggle="tooltip" data-placement="top" title="Send" onclick="sendMail($student['id'])" disabled="{$student['disabled']}">";
+                    echo "<i class="zmdi zmdi-mail-send"></i>";
+                    echo "</button>";
+                  }
+                  echo "</div>";
+                  echo "</td>";
+                  echo "</tr>";
+                }
+                ?>
+              </tbody>
+            </table>
+          </div>
         </div>
+      </div>
     </div>
-</section>
-<!-- END DATA TABLE-->
+  </section>
+  
 </html>
