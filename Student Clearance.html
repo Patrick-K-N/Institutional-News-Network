@@ -49,6 +49,7 @@
 <!-- END STATISTIC-->
 
 <!-- DATA TABLE: UNAPPROVED-->
+<br>
 <section class="p-t-20">
     <div class="container">
       <div class="row">
@@ -63,10 +64,12 @@
                 <i class="zmdi zmdi-check-all"></i>Approve Selection
               </button>
             </div>
+            </div> <br>
             <div>
               <input class="form-control form-control-md" type="text" placeholder="search" style="width: auto;" id="search_unapproved">
             </div>
           </div>
+          <br>
           <div class="table-responsive table-responsive-data2">
             <table class="table table-data2" id="unapproved_tbl">
               <thead>
@@ -77,50 +80,13 @@
                       <span class="au-checkmark"></span>
                     </label>
                   </th>
-                  <th>S/N</th>
-                  <th>Name</th>
+                  <th>Student Name</th>
                   <th>Admission number</th>
                   <th>Email</th>
-                  <th>Level</th>
                   <th></th>
                   <th></th>
                 </tr>
               </thead>
-              <tbody>
-                <script>
-                <?php
-                // Load the data for the unapproved students table
-                // ...
-  
-                // Iterate over the unapproved students and display them in a table row
-                foreach ($unapprovedStudents as $student) {
-                  echo "<tr>";
-                  echo "<td>";
-                  echo "<label class="au-checkbox">";
-                  echo "<input type="checkbox" name="student_ids[]" value="{$student['id']}">";
-                  echo "<span class="au-checkmark"></span>";
-                  echo "</label>";
-                  echo "</td>";
-                  echo "<td>{$student['sn']}</td>";
-                  echo "<td>{$student['name']}</td>";
-                  echo "<td>{$student['admission_no']}</td>";
-                  echo "<td>{$student['email']}</td>";
-                  echo "<td>{$student['level']}</td>";
-                  echo "<td>";
-                  echo "<span class="status--process text-danger">unapproved</span>";
-                  echo "</td>";
-                  echo "<td>";
-                  echo "<div class="table-data-feature">";
-                  echo "<button class="item hover hover-green" data-toggle="tooltip" data-placement="top" title="Approve" onclick="approveStudent($student['id'])">";
-                  echo "<i class="zmdi zmdi-check"></i>";
-                  echo "</button>";
-                  echo "</div>";
-                  echo "</td>";
-                  echo "</tr>";
-                }
-                ?>
-            </script>
-              </tbody>
             </table>
           </div>
         </div>
@@ -131,6 +97,7 @@
 <!-- END DATA TABLE-->
 
 <!-- DATA TABLE: APPROVED-->
+<br>
 <section class="p-t-50">
     <div class="container">
       <div class="row">
@@ -144,12 +111,13 @@
               <button class="au-btn au-btn-icon au-btn--green au-btn--small">
                 <i class="zmdi zmdi-delete"></i>Disapprove Selection
               </button>
-            </div>
+            </div></div> <br>
             <div>
               <input class="form-control form-control-md" type="text" placeholder="search" style="width: auto;" id="search_approved">
             </div>
           </div>
-          <div class="table-responsive table-responsive-data2">
+          <br>
+           <div class="table-responsive table-responsive-data2">
             <table class="table table-data2" id="approved_tbl">
               <thead>
                 <tr>
@@ -159,60 +127,14 @@
                       <span class="au-checkmark"></span>
                     </label>
                   </th>
-                  <th>S/N</th>
-                  <th>Name</th>
+                  <th>Student Name</th>
                   <th>Admission number</th>
                   <th>Email</th>
-                  <th>Level</th>
                   <th></th>
                   <th></th>
                 </tr>
-              </thead>
-              <tbody>
-                </tbody>
-                <script>
-                <?php
-                // Load the data for the approved students table
-                // ...
-  
-                // Iterate over the approved students and display them in a table row
-                foreach ($approvedStudents as $student) {
-                  echo "<tr>";
-                  echo "<td>";
-                  echo "<label class="au-checkbox">";
-                  echo "<input type="checkbox" name="student_ids[]" value="{$student['id']}">";
-                  echo "<span class="au-checkmark"></span>";
-                  echo "</label>";
-                  echo "</td>";
-                  echo "<td>{$student['sn']}</td>";
-                  echo "<td>{$student['name']}</td>";
-                  echo "<td>{$student['admission_no']}</td>";
-                  echo "<td>{$student['email']}</td>";
-                  echo "<td>{$student['level']}</td>";
-                  echo "<td>";
-                  echo "<span class="status--process">approved";
-                  echo "<span class="badge badge-pill badge-success" ng-show="student.hash || student.sent">";
-                  echo "sent";
-                  echo "</span>";
-                  echo "</span>";
-                  echo "</td>";
-                  echo "<td>";
-                  echo "<div class="table-data-feature">";
-                  echo "<button class="item hover hover-red" data-toggle="tooltip" data-placement="top" title="Disapprove" onclick="disapproveStudent($student['id'])" disabled="{$student['disabled']}">";
-                  echo "<i class="zmdi zmdi-delete"></i>";
-                  echo "</button>";
-                  if ($user['id'] == $finalId) {
-                    echo "<button class="item hover hover-green" data-toggle="tooltip" data-placement="top" title="Send" onclick="sendMail($student['id'])" disabled="{$student['disabled']}">";
-                    echo "<i class="zmdi zmdi-mail-send"></i>";
-                    echo "</button>";
-                  }
-                  echo "</div>";
-                  echo "</td>";
-                  echo "</tr>";
-                }
-                ?>
-            </script>
-              </tbody>
+              </thead> 
+             </tbody>
             </table>
           </div>
         </div>
