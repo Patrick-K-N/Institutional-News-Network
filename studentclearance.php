@@ -37,7 +37,7 @@ foreach ($unapprovedStudents as $student) {
   echo "<td>";
   echo "<label class=\"au-checkbox\">";
   echo "<input type=\"checkbox\" name=\"student_ids[]\" value=\"{$student['id']}">";
-  echo "<span class=\"au-checkmark\"></span>;
+  echo "<span class=\"au-checkmark\">" " </span>";
   echo "</label>";
   echo "</td>";
   echo "<td>{$student['sn']}</td>";
