@@ -40,7 +40,6 @@ foreach ($unapprovedStudents as $student) {
   echo "<span class=\"au-checkmark\">" " </span>";
   echo "</label>";
   echo "</td>";
-  echo "<td>{$student['sn']}</td>";
   echo "<td>{$student['name']}</td>";
   echo "<td>{$student['admission_no']}</td>";
   echo "<td>{$student['email']}</td>";
