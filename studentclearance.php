@@ -7,7 +7,6 @@ $unapprovedStudents = getUnapprovedStudents();
 // Define the function to approve a student
 function approveStudent($studentId) {
   // Approve the student in the database
-  // ...
 
   // Redirect the user back to the page
   header("Location: {$_SERVER['PHP_SELF']}");
@@ -16,7 +15,6 @@ function approveStudent($studentId) {
 // Define the function to disapprove a student
 function disapproveStudent($studentId) {
   // Disapprove the student in the database
-  // ...
 
   // Redirect the user back to the page
   header("Location: {$_SERVER['PHP_SELF']}");
@@ -25,7 +23,6 @@ function disapproveStudent($studentId) {
 // Define the function to send a mail to a student
 function sendMail($studentId) {
   // Send a mail to the student
-  // ...
 
   // Redirect the user back to the page
   header("Location: {$_SERVER['PHP_SELF']}");
