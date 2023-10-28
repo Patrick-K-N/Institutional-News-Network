@@ -40,7 +40,7 @@ foreach ($unapprovedStudents as $student) {
   echo "<td>{$student['name']}</td>";
   echo "<td>{$student['admission_no']}</td>";
   echo "<td>{$student['email']}</td>";
-  echo "<td>{$student['level']}</td>";
+  echo "<td>{$student['year']}</td>";
   echo "<td>";
   echo "<span class=\"status--process text-danger\">unapproved</span>";
   echo "</td>";
@@ -66,6 +66,7 @@ foreach ($approvedStudents as $student) {
   echo "<td>{$student['name']}</td>";
   echo "<td>{$student['admission_no']}</td>";
   echo "<td>{$student['email']}</td>";
+  echo "<td>{$student['year']}</td>";
   echo "<td>";
   echo "<span class=\"status--process\">approved";
   echo "<span class=\"badge badge-pill badge-success\" ng-show=\"student.hash || student.sent\">";
